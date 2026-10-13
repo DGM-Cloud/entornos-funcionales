@@ -1,0 +1,228 @@
+import { Component, signal, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgClass } from '@angular/common';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, NgClass],
+  template: `
+    <!-- HEADER NAVBAR (Smart Header con Auto-hide) -->
+    <header class="fixed top-0 left-0 w-full z-50 h-[64px] md:h-[72px] flex items-center transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+            [ngClass]="{
+              'bg-transparent': isMobileMenuOpen(),
+              'bg-white/95 backdrop-blur-md border-b border-slate-200': !isMobileMenuOpen(),
+              '-translate-y-full': isHeaderHidden(),
+              'translate-y-0': !isHeaderHidden()
+            }">
+      <div class="max-w-7xl mx-auto px-5 md:px-6 w-full flex justify-between items-center">
+
+        <!-- LOGO OFICIAL (Cambia a filtro blanco en móvil cuando el menú oscuro está abierto) -->
+        <a routerLink="/" (click)="closeMenu()" class="flex items-center cursor-pointer relative z-50">
+          <img src="https://www.entornosfuncionales.com/portal/wp-content/uploads/2024/11/Group-1-4.png"
+               alt="Entornos Funcionales"
+               class="h-10 md:h-[52px] w-auto object-contain transition-all duration-500 origin-left"
+               [class]="isMobileMenuOpen() ? 'brightness-0 invert opacity-90' : 'hover:scale-105'" />
+        </a>
+
+        <!-- NAVEGACIÓN DESKTOP -->
+        <nav class="hidden md:flex gap-10 items-center font-inter text-[13px] font-medium relative z-50">
+          <a routerLink="/" routerLinkActive="text-[#0B192C]" [routerLinkActiveOptions]="{exact: true}"
+             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Inicio</a>
+          <a routerLink="/nosotros" routerLinkActive="text-[#0B192C]"
+             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Nosotros</a>
+          <a routerLink="/servicios" routerLinkActive="text-[#0B192C]"
+             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Servicios</a>
+          <a routerLink="/proyectos" routerLinkActive="text-[#0B192C]"
+             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Proyectos</a>
+          <a routerLink="/contacto" routerLinkActive="text-[#0B192C]"
+             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Contacto</a>
+        </nav>
+
+        <!-- CTA HEADER DESKTOP -->
+        <div class="hidden md:flex items-center gap-6 relative z-50">
+          <div class="h-4 w-[1px] bg-slate-200"></div>
+          <a routerLink="/contacto" class="group flex items-center gap-2 cursor-pointer focus:outline-none p-1">
+            <span class="font-inter text-[11px] font-bold tracking-[0.15em] text-[#0B192C] uppercase group-hover:text-[#005691] transition-colors">Solicitar Cotización</span>
+            <div class="w-6 h-6 border border-slate-200 rounded-full flex items-center justify-center group-hover:border-[#005691] group-hover:bg-[#005691] transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#0B192C] group-hover:text-white transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- BOTÓN HAMBURGUESA ANIMADO -->
+        <button class="md:hidden relative w-10 h-10 flex items-center justify-center focus:outline-none group -mr-2 z-50"
+                (click)="toggleMenu()"
+                aria-label="Alternar menú">
+          <div class="relative w-6 h-3.5">
+            <span class="absolute left-0 w-full h-[1.5px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  [class]="isMobileMenuOpen() ? 'top-[50%] -translate-y-[50%] rotate-45 bg-white' : 'top-0 bg-[#0B192C]'"></span>
+
+            <span class="absolute left-0 top-[50%] -translate-y-[50%] w-full h-[1.5px] transition-all duration-200 ease-in-out"
+                  [class]="isMobileMenuOpen() ? 'opacity-0 bg-white' : 'opacity-100 bg-[#0B192C]'"></span>
+
+            <span class="absolute left-0 w-full h-[1.5px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  [class]="isMobileMenuOpen() ? 'top-[50%] -translate-y-[50%] -rotate-45 bg-white' : 'bottom-0 bg-[#0B192C]'"></span>
+          </div>
+        </button>
+      </div>
+
+      <!-- ==========================================
+           PANEL DE NAVEGACIÓN MÓVIL (Inmersivo "Blueprint Mode")
+           ========================================== -->
+      <div class="md:hidden fixed inset-0 h-[100dvh] w-full bg-[#0B192C] z-40 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden"
+           [class.clip-closed]="!isMobileMenuOpen()"
+           [class.clip-open]="isMobileMenuOpen()">
+
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-5 mix-blend-overlay"
+             style="background-image: linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+
+        <nav class="flex flex-col px-6 pt-24 pb-12 overflow-y-auto h-full relative z-10 custom-scrollbar">
+
+          <div class="flex flex-col gap-6 mt-4">
+            <a routerLink="/" routerLinkActive="active-nav-mobile" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()"
+               class="group flex items-end gap-6 transition-all duration-700 ease-out nav-item"
+               [style.transition-delay]="isMobileMenuOpen() ? '100ms' : '0ms'"
+               [class.translate-y-8]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+              <span class="font-mono text-xs text-[#5C968D] font-bold mb-2 md:mb-3">01</span>
+              <span class="font-jakarta font-medium text-[44px] sm:text-5xl text-white tracking-tighter leading-none group-hover:text-[#5C968D] transition-colors nav-text">Inicio</span>
+            </a>
+
+            <div class="w-full h-[1px] bg-slate-800 transition-all duration-700 delay-[150ms]" [class.w-0]="!isMobileMenuOpen()"></div>
+
+            <a routerLink="/nosotros" routerLinkActive="active-nav-mobile" (click)="closeMenu()"
+               class="group flex items-end gap-6 transition-all duration-700 ease-out nav-item"
+               [style.transition-delay]="isMobileMenuOpen() ? '200ms' : '0ms'"
+               [class.translate-y-8]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+              <span class="font-mono text-xs text-[#5C968D] font-bold mb-2 md:mb-3">02</span>
+              <span class="font-jakarta font-medium text-[44px] sm:text-5xl text-white tracking-tighter leading-none group-hover:text-[#5C968D] transition-colors nav-text">Nosotros</span>
+            </a>
+
+            <div class="w-full h-[1px] bg-slate-800 transition-all duration-700 delay-[250ms]" [class.w-0]="!isMobileMenuOpen()"></div>
+
+            <a routerLink="/servicios" routerLinkActive="active-nav-mobile" (click)="closeMenu()"
+               class="group flex items-end gap-6 transition-all duration-700 ease-out nav-item"
+               [style.transition-delay]="isMobileMenuOpen() ? '300ms' : '0ms'"
+               [class.translate-y-8]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+              <span class="font-mono text-xs text-[#5C968D] font-bold mb-2 md:mb-3">03</span>
+              <span class="font-jakarta font-medium text-[44px] sm:text-5xl text-white tracking-tighter leading-none group-hover:text-[#5C968D] transition-colors nav-text">Servicios</span>
+            </a>
+
+            <div class="w-full h-[1px] bg-slate-800 transition-all duration-700 delay-[350ms]" [class.w-0]="!isMobileMenuOpen()"></div>
+
+            <a routerLink="/proyectos" routerLinkActive="active-nav-mobile" (click)="closeMenu()"
+               class="group flex items-end gap-6 transition-all duration-700 ease-out nav-item"
+               [style.transition-delay]="isMobileMenuOpen() ? '400ms' : '0ms'"
+               [class.translate-y-8]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+              <span class="font-mono text-xs text-[#5C968D] font-bold mb-2 md:mb-3">04</span>
+              <span class="font-jakarta font-medium text-[44px] sm:text-5xl text-white tracking-tighter leading-none group-hover:text-[#5C968D] transition-colors nav-text">Proyectos</span>
+            </a>
+
+            <div class="w-full h-[1px] bg-slate-800 transition-all duration-700 delay-[450ms]" [class.w-0]="!isMobileMenuOpen()"></div>
+
+            <a routerLink="/contacto" routerLinkActive="active-nav-mobile" (click)="closeMenu()"
+               class="group flex items-end gap-6 transition-all duration-700 ease-out nav-item"
+               [style.transition-delay]="isMobileMenuOpen() ? '500ms' : '0ms'"
+               [class.translate-y-8]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+              <span class="font-mono text-xs text-[#5C968D] font-bold mb-2 md:mb-3">05</span>
+              <span class="font-jakarta font-medium text-[44px] sm:text-5xl text-white tracking-tighter leading-none group-hover:text-[#5C968D] transition-colors nav-text">Contacto</span>
+            </a>
+          </div>
+
+          <!-- FICHA TÉCNICA DE CONTACTO -->
+          <div class="mt-auto pt-12 transition-all duration-1000 ease-out"
+               [style.transition-delay]="isMobileMenuOpen() ? '700ms' : '0ms'"
+               [class.translate-y-12]="!isMobileMenuOpen()" [class.opacity-0]="!isMobileMenuOpen()"
+               [class.translate-y-0]="isMobileMenuOpen()" [class.opacity-100]="isMobileMenuOpen()">
+
+            <div class="bg-[#1E3E62]/20 border border-[#1E3E62] p-5 rounded-sm backdrop-blur-md flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-1.5 h-1.5 bg-[#5C968D] rounded-full animate-pulse"></div>
+                <span class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Coordinación Técnica</span>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <a href="mailto:cotizaciones@entornosfuncionales.pe" class="font-inter text-[13px] text-slate-300 font-light hover:text-white transition-colors truncate">cotizaciones&#64;entornosfuncionales.pe</a>
+                <a href="tel:+51913460898" class="font-mono text-lg text-white font-medium hover:text-[#5C968D] transition-colors mt-1">+51 913 460 898</a>
+              </div>
+
+              <a routerLink="/contacto" (click)="closeMenu()" class="mt-2 flex items-center justify-center gap-2 w-full py-3 bg-[#5C968D] hover:bg-[#4a7d75] transition-colors text-white text-xs font-jakarta font-bold uppercase tracking-widest rounded-sm">
+                Iniciar Proyecto
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </nav>
+      </div>
+    </header>
+  `,
+  styles: [`
+    .clip-closed {
+      clip-path: circle(0px at 100% 0px);
+    }
+    .clip-open {
+      clip-path: circle(150% at 100% 0px);
+    }
+    .active-nav-mobile .nav-text {
+      color: transparent;
+      -webkit-text-stroke: 1px #5C968D;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  `]
+})
+export class Header {
+  isMobileMenuOpen = signal(false);
+
+  // Variables para la lógica del Smart Header
+  isHeaderHidden = signal(false);
+  lastScrollTop = 0;
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    // Si el menú móvil está abierto, el header se queda fijo para evitar bugs
+    if (this.isMobileMenuOpen()) return;
+
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Si hacemos scroll hacia abajo y ya bajamos más que la altura del header (ej. 80px)
+    if (currentScroll > this.lastScrollTop && currentScroll > 80) {
+      this.isHeaderHidden.set(true);
+    } else {
+      // Si hacemos scroll hacia arriba o estamos en el top 0
+      this.isHeaderHidden.set(false);
+    }
+
+    // Evitamos valores negativos que ocurren en el efecto "bouncing" de iOS Safari
+    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }
+
+  toggleMenu() {
+    this.isMobileMenuOpen.update(val => !val);
+    this.manageBodyScroll();
+  }
+
+  closeMenu() {
+    this.isMobileMenuOpen.set(false);
+    this.manageBodyScroll();
+  }
+
+  private manageBodyScroll() {
+    if (this.isMobileMenuOpen()) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+}
