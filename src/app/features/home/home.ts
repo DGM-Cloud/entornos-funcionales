@@ -8,7 +8,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
   imports: [RouterLink, BeforeAfterSlider],
   template: `
     <!-- ==========================================
-1. HERO SECTION (100vh Puro, Sin elementos asomándose - INTACTO)
+         1. HERO SECTION
          ========================================== -->
     <section class="relative w-full h-screen flex flex-col justify-center bg-[#101827] overflow-hidden pt-[72px]">
 
@@ -67,7 +67,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
     <div class="w-full relative z-20">
 
       <!-- ==========================================
-           2. FRANJA DE ESTADÍSTICAS Y AUTORIDAD (Corte Editorial Plano y Limpio)
+           2. FRANJA DE ESTADÍSTICAS Y AUTORIDAD
            ========================================== -->
       <section class="w-full bg-white relative z-30 py-24 md:py-32">
         <div class="max-w-7xl mx-auto px-5 md:px-6">
@@ -119,40 +119,46 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
       </section>
 
       <!-- ==========================================
-           3. LOGOS CLIENTES (Marquesina Elegante)
+           3. LOGOS CLIENTES (Marquesina Corregida)
            ========================================== -->
-      <section class="bg-[#F8FAFC] py-16 md:py-24 border-y border-slate-200 overflow-hidden relative z-10">
+      <section class="bg-[#F8FAFC] py-16 md:py-24 border-y border-slate-200 overflow-hidden relative z-10 flex flex-col items-center">
 
-        <p #revealElement class="text-center text-[10px] md:text-xs font-mono text-slate-400 font-bold mb-12 tracking-[0.3em] uppercase opacity-0 transition-opacity duration-1000">
+        <p #revealElement class="text-[10px] md:text-xs font-mono text-slate-400 font-bold mb-12 tracking-[0.3em] uppercase opacity-0 transition-opacity duration-1000">
           CONFIANZA RESPALDADA POR FIRMAS LÍDERES
         </p>
 
         <div class="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none"></div>
         <div class="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none"></div>
 
-        <div class="flex w-[200%] md:w-max animate-marquee hover:[animation-play-state:paused] transition-all">
+        <!-- Contenedor principal de la marquesina con w-full pero ocultando desbordamiento -->
+        <div class="w-full overflow-hidden flex relative">
+          <!-- Las dos pistas animadas forzadas a w-max para no deformarse -->
+          <div class="flex w-max animate-marquee hover:[animation-play-state:paused] transition-all">
 
-          <div class="flex w-1/2 md:w-max justify-around md:justify-start items-center gap-16 md:gap-32 px-8 md:px-16 grayscale opacity-40">
-            <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] tracking-tighter whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">la venturosa</span>
-            <span class="font-jakarta font-medium text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">Líder</span>
-            <span class="font-inter font-black text-2xl md:text-3xl text-[#101827] tracking-tight whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">H.L. DESARROLLOS</span>
-            <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">BARQUEROS</span>
-            <span class="font-inter font-light text-2xl md:text-3xl text-[#101827] tracking-widest lowercase whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">imagina</span>
+            <!-- Bloque 1 -->
+            <div class="flex w-max items-center justify-around gap-16 md:gap-32 px-8 md:px-16 grayscale opacity-40">
+              <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] tracking-tighter whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">la venturosa</span>
+              <span class="font-jakarta font-medium text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">Líder</span>
+              <span class="font-inter font-black text-2xl md:text-3xl text-[#101827] tracking-tight whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">H.L. DESARROLLOS</span>
+              <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">BARQUEROS</span>
+              <span class="font-inter font-light text-2xl md:text-3xl text-[#101827] tracking-widest lowercase whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">imagina</span>
+            </div>
+
+            <!-- Bloque 2 (Copia idéntica) -->
+            <div class="flex w-max items-center justify-around gap-16 md:gap-32 px-8 md:px-16 grayscale opacity-40">
+              <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] tracking-tighter whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">la venturosa</span>
+              <span class="font-jakarta font-medium text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">Líder</span>
+              <span class="font-inter font-black text-2xl md:text-3xl text-[#101827] tracking-tight whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">H.L. DESARROLLOS</span>
+              <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">BARQUEROS</span>
+              <span class="font-inter font-light text-2xl md:text-3xl text-[#101827] tracking-widest lowercase whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">imagina</span>
+            </div>
+
           </div>
-
-          <div class="flex w-1/2 md:w-max justify-around md:justify-start items-center gap-16 md:gap-32 px-8 md:px-16 grayscale opacity-40">
-            <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] tracking-tighter whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">la venturosa</span>
-            <span class="font-jakarta font-medium text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">Líder</span>
-            <span class="font-inter font-black text-2xl md:text-3xl text-[#101827] tracking-tight whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">H.L. DESARROLLOS</span>
-            <span class="font-jakarta font-bold text-2xl md:text-3xl text-[#101827] whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">BARQUEROS</span>
-            <span class="font-inter font-light text-2xl md:text-3xl text-[#101827] tracking-widest lowercase whitespace-nowrap hover:opacity-100 hover:grayscale-0 hover:text-[#0B192C] transition-all duration-300 cursor-default">imagina</span>
-          </div>
-
         </div>
       </section>
 
       <!-- ==========================================
-           4. SLIDER ANTES Y DESPUÉS (Animado)
+           4. SLIDER ANTES Y DESPUÉS
            ========================================== -->
       <section class="py-24 md:py-32 bg-white relative overflow-hidden">
         <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
@@ -184,7 +190,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
       </section>
 
       <!-- ==========================================
-           5. RESUMEN DE SERVICIOS (Con Enlaces Añadidos)
+           5. RESUMEN DE SERVICIOS
            ========================================== -->
       <section class="py-24 md:py-32 bg-[#F8FAFC] border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-5 md:px-6">
@@ -210,7 +216,6 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
           </div>
 
           <div #revealElement class="grid grid-cols-1 md:grid-cols-3 border border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 bg-[#101827] shadow-xl shadow-slate-200/50 rounded-sm overflow-hidden opacity-0 translate-y-12 transition-all duration-[1200ms] delay-200 ease-out">
-            <!-- AÑADIDO: routerLink="/servicios" a cada article -->
             <article routerLink="/servicios" class="group relative h-[450px] md:h-[600px] overflow-hidden cursor-pointer">
               <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=800&auto=format&fit=crop" alt="Drywall" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
               <div class="absolute inset-0 bg-gradient-to-t from-[#101827] via-[#101827]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -352,7 +357,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
       animation-delay: 150ms;
     }
 
-    /* Animación fluida de Marquesina */
+    /* Animación fluida de Marquesina corregida a -50% */
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }

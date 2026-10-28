@@ -1,11 +1,11 @@
-import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, computed } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   template: `
-    <!-- ... (Hero y Columna Izquierda se mantienen igual) ... -->
     <section class="relative w-full min-h-screen bg-[#0B192C] overflow-hidden pt-[104px] pb-24 md:pb-32">
       <!-- Fondo arquitectónico inmersivo con el azul corporativo -->
       <div class="absolute inset-0 z-0 flex justify-end opacity-100 mix-blend-luminosity">
@@ -28,7 +28,6 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
                COLUMNA IZQUIERDA: Información (Dark Mode)
                ========================================== -->
           <div #revealElement class="lg:col-span-5 flex flex-col opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-            <!-- ... (Contenido Columna Izquierda se mantiene igual) ... -->
             <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 border border-[#1E3E62] bg-[#1E3E62]/30 backdrop-blur-sm rounded-sm shadow-sm w-fit">
               <div class="w-1.5 h-1.5 rounded-full bg-[#005691] animate-pulse"></div>
               <span class="font-inter text-slate-200 text-[10px] font-bold tracking-[0.2em] uppercase">Oficina Técnica</span>
@@ -83,12 +82,10 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
               <!-- Fila 1: Nombre y Empresa -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col relative group">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Nombre del Contacto *</label>
                   <input type="text" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors placeholder:text-slate-300" placeholder="Ingeniero / Arquitecto" required>
                 </div>
                 <div class="flex flex-col relative group">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Empresa / Constructora *</label>
                   <input type="text" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors placeholder:text-slate-300" placeholder="Razón Social" required>
                 </div>
@@ -97,25 +94,18 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
               <!-- Fila 2: Correo y Teléfono -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col relative group">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Correo Corporativo *</label>
                   <input type="email" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors placeholder:text-slate-300" placeholder="correo@empresa.com" required>
                 </div>
                 <div class="flex flex-col relative group">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Teléfono Móvil</label>
                   <input type="tel" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors placeholder:text-slate-300" placeholder="+51 900 000 000">
                 </div>
               </div>
 
-              <!-- ==========================================
-                   FILA 3: Custom Select y Ubicación
-                   ========================================== -->
+              <!-- Fila 3: Custom Select y Ubicación -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-
-                <!-- SELECT PERSONALIZADO DE ALTA GAMA -->
                 <div class="flex flex-col relative">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold uppercase tracking-widest mb-2 transition-colors"
                          [class.text-[#005691]]="isDropdownOpen()"
                          [class.text-slate-500]="!isDropdownOpen()">
@@ -123,18 +113,15 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
                   </label>
 
                   <div class="relative w-full">
-                    <!-- Gatillo (Trigger) visual del select -->
                     <div class="w-full bg-transparent border-b py-2.5 font-inter text-base cursor-pointer flex justify-between items-center transition-colors"
                          (click)="toggleDropdown()"
                          [class.border-[#005691]]="isDropdownOpen()"
                          [class.border-slate-300]="!isDropdownOpen()">
 
-                      <!-- Texto seleccionado o Placeholder -->
                       <span [class.text-[#0B192C]]="selectedService()" [class.text-slate-300]="!selectedService()">
                         {{ getSelectedServiceName() || 'Seleccionar especialidad...' }}
                       </span>
 
-                      <!-- Flecha que rota al hacer click -->
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                            class="transition-transform duration-300 pointer-events-none"
                            [class.rotate-180]="isDropdownOpen()"
@@ -144,39 +131,54 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
                       </svg>
                     </div>
 
-                    <!-- Panel desplegable flotante -->
                     @if (isDropdownOpen()) {
-                      <!-- Fondo invisible para detectar el clic fuera del panel y cerrarlo -->
-                      <div class="fixed inset-0 z-40" (click)="closeDropdown()"></div>
-
-                      <!-- Opciones personalizadas -->
-                      <div class="absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-200 rounded-sm shadow-xl shadow-slate-200/50 z-50 py-2 origin-top animate-fade-in-down">
-                        @for (service of services; track service.id) {
-                          <div class="px-5 py-3 font-inter text-[14px] text-slate-600 hover:bg-[#F8FAFC] hover:text-[#005691] cursor-pointer transition-colors"
-                               [class.font-bold]="selectedService() === service.id"
-                               [class.text-[#005691]]="selectedService() === service.id"
-                               [class.bg-[#F8FAFC]]="selectedService() === service.id"
-                               (click)="selectService(service.id)">
-                            {{ service.name }}
-                          </div>
-                        }
-                      </div>
+                    <div class="fixed inset-0 z-40" (click)="closeDropdown()"></div>
+                    <div class="absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-200 rounded-sm shadow-xl shadow-slate-200/50 z-50 py-2 origin-top animate-fade-in-down">
+                      @for (service of services; track service.id) {
+                    <div class="px-5 py-3 font-inter text-[14px] text-slate-600 hover:bg-[#F8FAFC] hover:text-[#005691] cursor-pointer transition-colors"
+                         [class.font-bold]="selectedService() === service.id"
+                         [class.text-[#005691]]="selectedService() === service.id"
+                         [class.bg-[#F8FAFC]]="selectedService() === service.id"
+                         (click)="selectService(service.id)">
+                      {{ service.name }}
+                    </div>
+                    }
+                    </div>
                     }
                   </div>
                 </div>
 
                 <div class="flex flex-col relative group">
-                  <!-- CAMBIADO A text-slate-500 -->
                   <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Ubicación de la Obra</label>
                   <input type="text" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors placeholder:text-slate-300" placeholder="Distrito, Ciudad">
                 </div>
               </div>
 
               <!-- Fila 4: Descripción -->
-              <div class="flex flex-col relative group mb-10">
-                <!-- CAMBIADO A text-slate-500 -->
+              <div class="flex flex-col relative group mb-8">
                 <label class="font-inter text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 transition-colors group-focus-within:text-[#005691]">Descripción Técnica del Requerimiento *</label>
                 <textarea rows="3" class="w-full bg-transparent border-b border-slate-300 py-2.5 text-[#0B192C] font-inter text-base focus:outline-none focus:border-[#005691] transition-colors resize-none placeholder:text-slate-300" placeholder="Detalle metrajes, especificaciones particulares o plazos esperados..." required></textarea>
+              </div>
+
+              <!-- ==========================================
+                   CHECKBOX LEGAL DE PRIVACIDAD
+                   ========================================== -->
+              <div class="mb-10">
+                <label class="flex items-start gap-3 cursor-pointer group">
+                  <div class="relative flex items-center justify-center mt-0.5">
+                    <input type="checkbox" class="peer appearance-none w-4 h-4 border border-slate-300 rounded-sm bg-transparent checked:bg-[#005691] checked:border-[#005691] focus:outline-none focus:ring-2 focus:ring-[#005691] focus:ring-offset-1 transition-all cursor-pointer required">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  </div>
+                  <span class="font-inter text-[11px] text-slate-500 leading-relaxed font-light">
+                    He leído y acepto la
+                    <a routerLink="/privacidad" target="_blank" class="text-[#005691] font-medium hover:underline underline-offset-2">Política de Privacidad</a>
+                    y los
+                    <a routerLink="/terminos" target="_blank" class="text-[#005691] font-medium hover:underline underline-offset-2">Términos y Condiciones</a>
+                    para el tratamiento de mis datos de contacto. *
+                  </span>
+                </label>
               </div>
 
               <!-- Botón Submit -->

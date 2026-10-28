@@ -7,45 +7,64 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NgClass],
   template: `
-    <!-- HEADER NAVBAR (Smart Header con Auto-hide) -->
+    <!-- HEADER NAVBAR (Smart Header con Auto-hide y Cambio de Color) -->
     <header class="fixed top-0 left-0 w-full z-50 h-[64px] md:h-[72px] flex items-center transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
             [ngClass]="{
               'bg-transparent': isMobileMenuOpen(),
-              'bg-white/95 backdrop-blur-md border-b border-slate-200': !isMobileMenuOpen(),
+              'bg-white/95 backdrop-blur-md border-b border-slate-200': !isMobileMenuOpen() && !isScrolled(),
+              'bg-[#0B192C]/95 backdrop-blur-md border-b border-[#1E3E62] shadow-lg': !isMobileMenuOpen() && isScrolled(),
               '-translate-y-full': isHeaderHidden(),
               'translate-y-0': !isHeaderHidden()
             }">
       <div class="max-w-7xl mx-auto px-5 md:px-6 w-full flex justify-between items-center">
 
-        <!-- LOGO OFICIAL (Cambia a filtro blanco en móvil cuando el menú oscuro está abierto) -->
+        <!-- LOGO OFICIAL -->
         <a routerLink="/" (click)="closeMenu()" class="flex items-center cursor-pointer relative z-50">
           <img src="https://www.entornosfuncionales.com/portal/wp-content/uploads/2024/11/Group-1-4.png"
                alt="Entornos Funcionales"
                class="h-10 md:h-[52px] w-auto object-contain transition-all duration-500 origin-left"
-               [class]="isMobileMenuOpen() ? 'brightness-0 invert opacity-90' : 'hover:scale-105'" />
+               [class.brightness-0]="isMobileMenuOpen() || isScrolled()"
+               [class.invert]="isMobileMenuOpen() || isScrolled()"
+               [class.opacity-90]="isMobileMenuOpen() || isScrolled()"
+               [class.hover:scale-105]="!isMobileMenuOpen()" />
         </a>
 
         <!-- NAVEGACIÓN DESKTOP -->
-        <nav class="hidden md:flex gap-10 items-center font-inter text-[13px] font-medium relative z-50">
-          <a routerLink="/" routerLinkActive="text-[#0B192C]" [routerLinkActiveOptions]="{exact: true}"
-             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Inicio</a>
-          <a routerLink="/nosotros" routerLinkActive="text-[#0B192C]"
-             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Nosotros</a>
-          <a routerLink="/servicios" routerLinkActive="text-[#0B192C]"
-             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Servicios</a>
-          <a routerLink="/proyectos" routerLinkActive="text-[#0B192C]"
-             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Proyectos</a>
-          <a routerLink="/contacto" routerLinkActive="text-[#0B192C]"
-             class="text-slate-500 hover:text-[#0B192C] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300">Contacto</a>
+        <nav class="hidden md:flex gap-10 items-center font-inter text-[13px] font-medium relative z-50 transition-colors duration-500">
+          <a routerLink="/" routerLinkActive="font-bold" [routerLinkActiveOptions]="{exact: true}"
+             class="transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300"
+             [ngClass]="isScrolled() ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-[#0B192C]'">Inicio</a>
+
+          <a routerLink="/nosotros" routerLinkActive="font-bold"
+             class="transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300"
+             [ngClass]="isScrolled() ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-[#0B192C]'">Nosotros</a>
+
+          <a routerLink="/servicios" routerLinkActive="font-bold"
+             class="transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300"
+             [ngClass]="isScrolled() ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-[#0B192C]'">Servicios</a>
+
+          <a routerLink="/proyectos" routerLinkActive="font-bold"
+             class="transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300"
+             [ngClass]="isScrolled() ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-[#0B192C]'">Proyectos</a>
+
+          <a routerLink="/contacto" routerLinkActive="font-bold"
+             class="transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#005691] hover:after:w-full after:transition-all after:duration-300"
+             [ngClass]="isScrolled() ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-[#0B192C]'">Contacto</a>
         </nav>
 
         <!-- CTA HEADER DESKTOP -->
         <div class="hidden md:flex items-center gap-6 relative z-50">
-          <div class="h-4 w-[1px] bg-slate-200"></div>
+          <div class="h-4 w-[1px] transition-colors duration-500" [ngClass]="isScrolled() ? 'bg-slate-700' : 'bg-slate-200'"></div>
           <a routerLink="/contacto" class="group flex items-center gap-2 cursor-pointer focus:outline-none p-1">
-            <span class="font-inter text-[11px] font-bold tracking-[0.15em] text-[#0B192C] uppercase group-hover:text-[#005691] transition-colors">Solicitar Cotización</span>
-            <div class="w-6 h-6 border border-slate-200 rounded-full flex items-center justify-center group-hover:border-[#005691] group-hover:bg-[#005691] transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#0B192C] group-hover:text-white transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            <span class="font-inter text-[11px] font-bold tracking-[0.15em] uppercase transition-colors duration-500"
+                  [ngClass]="isScrolled() ? 'text-white group-hover:text-[#5C968D]' : 'text-[#0B192C] group-hover:text-[#005691]'">
+              Solicitar Cotización
+            </span>
+            <div class="w-6 h-6 border rounded-full flex items-center justify-center transition-colors duration-500"
+                 [ngClass]="isScrolled() ? 'border-slate-600 group-hover:border-[#5C968D] group-hover:bg-[#5C968D]' : 'border-slate-200 group-hover:border-[#005691] group-hover:bg-[#005691]'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                   [ngClass]="isScrolled() ? 'text-white' : 'text-[#0B192C] group-hover:text-white'"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </a>
         </div>
@@ -56,20 +75,23 @@ import { NgClass } from '@angular/common';
                 aria-label="Alternar menú">
           <div class="relative w-6 h-3.5">
             <span class="absolute left-0 w-full h-[1.5px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                  [class]="isMobileMenuOpen() ? 'top-[50%] -translate-y-[50%] rotate-45 bg-white' : 'top-0 bg-[#0B192C]'"></span>
+                  [class]="isMobileMenuOpen() || isScrolled() ? 'bg-white' : 'bg-[#0B192C]'"
+                  [class.top-[50%]]="isMobileMenuOpen()" [class.-translate-y-[50%]]="isMobileMenuOpen()" [class.rotate-45]="isMobileMenuOpen()"
+                  [class.top-0]="!isMobileMenuOpen()"></span>
 
             <span class="absolute left-0 top-[50%] -translate-y-[50%] w-full h-[1.5px] transition-all duration-200 ease-in-out"
-                  [class]="isMobileMenuOpen() ? 'opacity-0 bg-white' : 'opacity-100 bg-[#0B192C]'"></span>
+                  [class]="isMobileMenuOpen() ? 'opacity-0' : 'opacity-100'"
+                  [class.bg-white]="isScrolled()" [class.bg-[#0B192C]]="!isScrolled()"></span>
 
             <span class="absolute left-0 w-full h-[1.5px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                  [class]="isMobileMenuOpen() ? 'top-[50%] -translate-y-[50%] -rotate-45 bg-white' : 'bottom-0 bg-[#0B192C]'"></span>
+                  [class]="isMobileMenuOpen() || isScrolled() ? 'bg-white' : 'bg-[#0B192C]'"
+                  [class.top-[50%]]="isMobileMenuOpen()" [class.-translate-y-[50%]]="isMobileMenuOpen()" [class.-rotate-45]="isMobileMenuOpen()"
+                  [class.bottom-0]="!isMobileMenuOpen()"></span>
           </div>
         </button>
       </div>
 
-      <!-- ==========================================
-           PANEL DE NAVEGACIÓN MÓVIL (Inmersivo "Blueprint Mode")
-           ========================================== -->
+      <!-- PANEL DE NAVEGACIÓN MÓVIL (Inmersivo "Blueprint Mode" - SE MANTIENE INTACTO) -->
       <div class="md:hidden fixed inset-0 h-[100dvh] w-full bg-[#0B192C] z-40 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden"
            [class.clip-closed]="!isMobileMenuOpen()"
            [class.clip-open]="isMobileMenuOpen()">
@@ -187,24 +209,35 @@ export class Header {
 
   // Variables para la lógica del Smart Header
   isHeaderHidden = signal(false);
+  isScrolled = signal(false);
   lastScrollTop = 0;
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    // Si el menú móvil está abierto, el header se queda fijo para evitar bugs
     if (this.isMobileMenuOpen()) return;
 
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Si hacemos scroll hacia abajo y ya bajamos más que la altura del header (ej. 80px)
+    // Obtenemos la altura exacta de la pantalla del usuario (el 100vh del Hero)
+    // y le restamos la altura del header (aprox 72px) para que el cambio suceda
+    // milimétricamente en la línea divisoria.
+    const threshold = window.innerHeight - 72;
+
+    // LÓGICA DE COLOR: Cambia a azul solo cuando cruza la frontera de la sección blanca
+    if (currentScroll > threshold) {
+      this.isScrolled.set(true);
+    } else {
+      this.isScrolled.set(false);
+    }
+
+    // LÓGICA DE AUTO-HIDE: Se oculta si bajamos, reaparece si subimos
     if (currentScroll > this.lastScrollTop && currentScroll > 80) {
       this.isHeaderHidden.set(true);
     } else {
-      // Si hacemos scroll hacia arriba o estamos en el top 0
       this.isHeaderHidden.set(false);
     }
 
-    // Evitamos valores negativos que ocurren en el efecto "bouncing" de iOS Safari
+    // Evitamos valores negativos (efecto "bouncing" de Safari)
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }
 

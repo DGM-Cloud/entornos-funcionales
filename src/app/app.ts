@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
 import { FloatingWhatsapp } from './shared/components/floating-whatsapp/floating-whatsapp';
+import { CookieBannerComponent} from './shared/components/cookies/cookie-banner.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header, Footer, FloatingWhatsapp],
+  imports: [RouterOutlet, Header, Footer, FloatingWhatsapp, CookieBannerComponent],
   template: `
     <!-- El Header será sticky y se mantendrá arriba -->
     <app-header />
@@ -22,6 +23,9 @@ import { FloatingWhatsapp } from './shared/components/floating-whatsapp/floating
 
     <!-- Botón flotante de WhatsApp global -->
     <app-floating-whatsapp />
+
+    <!-- El banner inteligente -->
+    <app-cookie-banner></app-cookie-banner>
   `
 })
 export class App {

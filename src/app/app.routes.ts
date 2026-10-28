@@ -27,6 +27,21 @@ export const routes: Routes = [
     loadComponent: () => import('./features/contact/contact').then(m => m.Contact)
   },
   {
+    path: 'privacidad',
+    title: 'Políticas de Privacidad | Entornos Funcionales',
+    loadComponent: () => import('./shared/components/footer/privacidad.component').then(m => m.PrivacidadComponent)
+  },
+  {
+    path: 'terminos',
+    title: 'Términos y Condiciones | Entornos Funcionales',
+    loadComponent: () => import('./shared/components/footer/terminos.component').then(m => m.TerminosComponent)
+  },
+  {
+    path: 'libro-reclamaciones',
+    title: 'Libro de Reclamaciones | Entornos Funcionales',
+    loadComponent: () => import('./shared/components/libro-reclamaciones/libro-reclamaciones.component').then(m => m.LibroReclamacionesComponent)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
