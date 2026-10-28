@@ -1,29 +1,24 @@
 import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [RouterLink], // IMPORTANTE: Declarado en los imports
   template: `
-    <!-- ==========================================
-         HERO A PANTALLA COMPLETA (100dvh)
-         ========================================== -->
     <section class="relative w-full h-[100dvh] flex flex-col justify-center overflow-hidden pt-[72px]">
 
-      <!-- FOTOGRAFÍA DE FONDO (Con superposición oscura y retícula unificada) -->
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=800&auto=format&fit=crop"
              alt="Equipo técnico en obra" class="w-full h-full object-cover object-center mix-blend-luminosity opacity-40" />
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-[#0B192C]/60"></div>
-        <!-- Degradado inferior corregido para mantener la línea de diseño oscura -->
         <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0B192C] to-transparent"></div>
       </div>
 
-      <!-- Retícula técnica sutil -->
       <div class="absolute inset-0 z-0 pointer-events-none mix-blend-overlay opacity-30"
            style="background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 6rem 6rem;">
       </div>
 
-      <!-- Contenedor central -->
       <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full animate-fade-in -mt-10">
         <div class="inline-flex items-center gap-3 mb-6 md:mb-8 px-4 py-2 border border-slate-600/50 bg-[#0B192C]/50 backdrop-blur-sm rounded-sm">
           <div class="w-1.5 h-1.5 rounded-full bg-[#5C968D] animate-pulse"></div>
@@ -51,9 +46,6 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@
       </div>
     </section>
 
-    <!-- ==========================================
-         SECCIÓN: EL MANIFIESTO (Diseño Editorial B2B)
-         ========================================== -->
     <section class="py-20 md:py-32 bg-white relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
@@ -212,7 +204,7 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@
     </section>
 
     <!-- ==========================================
-         CALL TO ACTION INTERACTIVO
+         CALL TO ACTION INTERACTIVO (Corregido con routerLink)
          ========================================== -->
     <section class="bg-white py-20 md:py-24 relative overflow-hidden border-t border-slate-200">
       <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
@@ -223,10 +215,12 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@
           Ponga su obra en manos de especialistas. Un ingeniero residente evaluará sus requerimientos y le entregará una propuesta técnica detallada.
         </p>
         <div class="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
-          <a href="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
+          <!-- CORRECCIÓN A routerLink="/contacto" -->
+          <a routerLink="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
             Solicitar Estimación
           </a>
-          <a href="/proyectos" class="w-full sm:w-auto bg-transparent border border-slate-300 text-slate-600 px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-slate-50 hover:border-slate-400 transition-colors text-center">
+          <!-- CORRECCIÓN A routerLink="/proyectos" -->
+          <a routerLink="/proyectos" class="w-full sm:w-auto bg-transparent border border-slate-300 text-slate-600 px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-slate-50 hover:border-slate-400 transition-colors text-center">
             Ver Portafolio
           </a>
         </div>

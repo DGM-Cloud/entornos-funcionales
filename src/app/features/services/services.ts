@@ -1,8 +1,10 @@
 import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 
 @Component({
   selector: 'app-services',
   standalone: true,
+  imports: [RouterLink], // IMPORTANTE: Declarado en los imports
   template: `
     <!-- ==========================================
 1. HERO SECTION (100vh Puro, Diseño Home B2B)
@@ -49,7 +51,8 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@
           </p>
 
           <div class="flex flex-wrap sm:flex-nowrap gap-4">
-            <a href="/contacto" class="bg-[#F5F6F8] text-[#101827] px-8 py-3.5 md:py-4 rounded-sm text-[13px] font-jakarta font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center whitespace-nowrap">
+            <!-- CORRECCIÓN A routerLink="/contacto" -->
+            <a routerLink="/contacto" class="bg-[#F5F6F8] text-[#101827] px-8 py-3.5 md:py-4 rounded-sm text-[13px] font-jakarta font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center whitespace-nowrap">
               Solicitar TDR
             </a>
           </div>
@@ -363,7 +366,8 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@
           Nuestra capacidad técnica está a disposición de su empresa. Un ingeniero evaluará sus requerimientos y le entregará una propuesta alineada a sus objetivos.
         </p>
         <div class="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
-          <a href="/contacto" class="w-full sm:w-auto bg-[#101827] text-white px-8 py-3.5 md:py-4 rounded-sm text-[13px] font-jakarta font-bold uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center whitespace-nowrap">
+          <!-- CORRECCIÓN A routerLink="/contacto" -->
+          <a routerLink="/contacto" class="w-full sm:w-auto bg-[#101827] text-white px-8 py-3.5 md:py-4 rounded-sm text-[13px] font-jakarta font-bold uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center whitespace-nowrap">
             Solicitar Información
           </a>
         </div>

@@ -1,4 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, computed } from '@angular/core';
+import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 import { BeforeAfterSlider } from '../../shared/components/before-after-slider/before-after-slider';
 
 type CategoriaProyecto = 'todos' | 'corporativo' | 'comercial' | 'industrial' | 'residencial';
@@ -21,10 +22,10 @@ interface Proyecto {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [BeforeAfterSlider],
+  imports: [BeforeAfterSlider, RouterLink], // IMPORTANTE: Agregado RouterLink a los imports
   template: `
     <!-- ==========================================
-         HERO A PANTALLA COMPLETA (Ajustado para pantallas grandes y pequeñas)
+         HERO A PANTALLA COMPLETA
          ========================================== -->
     <section class="relative w-full min-h-screen flex flex-col justify-between overflow-hidden pt-[104px] pb-16">
 
@@ -60,7 +61,7 @@ interface Proyecto {
         </div>
       </div>
 
-      <!-- INDICADOR DE SCROLL ANIMADO (Perfectamente integrado en el flujo, visible en cualquier monitor) -->
+      <!-- INDICADOR DE SCROLL ANIMADO -->
       <div class="relative z-25 mx-auto flex flex-col items-center gap-3 animate-fade-in delay-500 opacity-0 mt-12 shrink-0" style="animation-fill-mode: forwards;">
         <span class="font-inter text-[9px] text-[#B8C3D2] uppercase tracking-[0.3em] font-medium">Explorar Proyectos</span>
         <div class="w-6 h-10 border border-[#B8C3D2]/50 rounded-full flex justify-center pt-2">
@@ -274,9 +275,11 @@ interface Proyecto {
           Escríbanos o envíenos los planos del proyecto. Un ingeniero residente se pondrá en contacto para afinar metrados y proponer soluciones.
         </p>
         <div class="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
-          <a href="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
+          <!-- CORRECCIÓN A routerLink="/contacto" -->
+          <a routerLink="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
             Validar Proyecto
           </a>
+          <!-- El enlace a WhatsApp se mantiene con href y target="_blank" -->
           <a href="https://wa.me/51913460898" target="_blank" class="w-full sm:w-auto bg-transparent border border-[#1E3E62] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62]/20 transition-colors text-center">
             Consulta Técnica Inmediata
           </a>
