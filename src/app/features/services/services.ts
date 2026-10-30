@@ -13,9 +13,9 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 
       <!-- FOTOGRAFÍA PRINCIPAL -->
       <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=2000&auto=format&fit=crop"
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/v1793316075/IMG-20240917-WA0079_-_copia_-_copia.jpg"
              alt="Especialidades Arquitectónicas"
-             class="w-full h-full object-cover opacity-70" />
+             class="w-full h-full object-cover opacity-70 -scale-x-100" />
 
         <div class="absolute inset-0 bg-gradient-to-r from-[#101827] via-[#101827]/85 to-transparent"></div>
         <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#101827] to-transparent"></div>

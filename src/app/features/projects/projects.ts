@@ -31,7 +31,7 @@ interface Proyecto {
 
       <!-- FOTOGRAFÍA DE FONDO -->
       <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop"
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793335509/Sala_de_reuniones_moderna_con_techo_iluminado.png"
              alt="Portafolio Arquitectónico"
              class="w-full h-full object-cover object-right" />
 

@@ -24,7 +24,8 @@ import { Component, Input, signal, ElementRef, ViewChild, HostListener } from '@
       <div class="absolute inset-0 z-10 select-none pointer-events-none"
            [style.clip-path]="'inset(0 ' + (100 - sliderPosition()) + '% 0 0)'">
 
-        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793319963/Construcci%C3%B3n_Moderna_en_Progreso.png"
+        <!-- URL optimizada con f_auto,q_auto -->
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793320487/Pabell%C3%B3n_moderno_en_construcci%C3%B3n.png"
              alt="Estado Inicial"
              class="absolute inset-0 w-full h-full object-cover object-bottom grayscale brightness-90" />
 
@@ -51,8 +52,9 @@ export class BeforeAfterSlider {
   sliderPosition = signal(50);
   isSliding = false;
 
-  @Input() imgAntes: string = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop';
-  @Input() imgDespues: string = 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2000&auto=format&fit=crop';
+  // Variables limpias, sin las imágenes de prueba
+  @Input() imgAntes: string = '';
+  @Input() imgDespues: string = '';
 
   @ViewChild('sliderContainer') container!: ElementRef<HTMLDivElement>;
 

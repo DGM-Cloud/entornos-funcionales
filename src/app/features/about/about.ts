@@ -9,8 +9,8 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
     <section class="relative w-full h-[100dvh] flex flex-col justify-center overflow-hidden pt-[72px]">
 
       <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=800&auto=format&fit=crop"
-             alt="Equipo técnico en obra" class="w-full h-full object-cover object-center mix-blend-luminosity opacity-40" />
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793334528/Reuni%C3%B3n_de_seguridad_en_construcci%C3%B3n.png"
+             alt="Equipo técnico en obra" class="w-full h-full object-cover opacity-70 " />
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-[#0B192C]/60"></div>
         <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0B192C] to-transparent"></div>
       </div>

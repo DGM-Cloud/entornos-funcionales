@@ -11,10 +11,9 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
          1. HERO SECTION
          ========================================== -->
     <section class="relative w-full h-screen flex flex-col justify-center bg-[#101827] overflow-hidden pt-[72px]">
-
       <!-- FOTOGRAFÍA PRINCIPAL -->
       <div class="absolute inset-0 z-0">
-        <img src="https://res.cloudinary.com/w775d4fq/image/upload/v1793316075/IMG-20240917-WA0079_-_copia_-_copia.jpg"
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793318606/Entrada_moderna_con_p%C3%A9rgola_y_flores.png"
              alt="Acabados Arquitectónicos de Alta Gama"
              class="w-full h-full object-cover opacity-70 -scale-x-100" />
 
@@ -190,8 +189,8 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
       </section>
 
       <!-- ==========================================
-           5. RESUMEN DE SERVICIOS
-           ========================================== -->
+        5. RESUMEN DE SERVICIOS
+        ========================================== -->
       <section class="py-24 md:py-32 bg-[#F8FAFC] border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-5 md:px-6">
 
@@ -216,32 +215,37 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
           </div>
 
           <div #revealElement class="grid grid-cols-1 md:grid-cols-3 border border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 bg-[#101827] shadow-xl shadow-slate-200/50 rounded-sm overflow-hidden opacity-0 translate-y-12 transition-all duration-[1200ms] delay-200 ease-out">
+
+            <!-- SERVICIO 1: ELECTRICIDAD INDUSTRIAL -->
             <article routerLink="/servicios" class="group relative h-[450px] md:h-[600px] overflow-hidden cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=800&auto=format&fit=crop" alt="Drywall" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+              <img src="https://res.cloudinary.com/w775d4fq/image/upload/v1793328787/IMG-20240918-WA0001.jpg" alt="Electricidad Industrial" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
               <div class="absolute inset-0 bg-gradient-to-t from-[#101827] via-[#101827]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
               <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="font-inter text-2xl text-white font-medium mb-3 tracking-tight">Drywall y Aislamiento</h3>
-                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Instalación de tabiquería con tratamiento acústico, resistencia al fuego (RF) y cielos rasos arquitectónicos.</p>
+                <h3 class="font-inter text-2xl text-white font-medium mb-3 tracking-tight">Electricidad Industrial</h3>
+                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Diseño, montaje y certificación de tableros eléctricos, eficiencia energética y levantamiento de normativas INDECI.</p>
               </div>
             </article>
 
+            <!-- SERVICIO 2: REDES HIDROSANITARIAS (GASFITERÍA) -->
             <article routerLink="/servicios" class="group relative h-[450px] md:h-[600px] overflow-hidden cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Hidrosanitarias" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+              <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793329130/Sistema_de_rociadores_sobre_escalera_amarilla.png" alt="Redes Hidrosanitarias" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
               <div class="absolute inset-0 bg-gradient-to-t from-[#101827] via-[#101827]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
               <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 class="font-inter text-2xl text-white font-medium mb-3 tracking-tight">Redes Hidrosanitarias</h3>
-                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Gasfitería industrial, sistemas de bombeo y aparatos sanitarios.</p>
+                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Gasfitería industrial, canalizaciones pesadas, redes termofusionadas y montaje de aparatos institucionales.</p>
               </div>
             </article>
 
+            <!-- SERVICIO 3: ACABADOS Y PINTURA -->
             <article routerLink="/servicios" class="group relative h-[450px] md:h-[600px] overflow-hidden cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" alt="Acabados" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+              <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793329414/Mantenimiento_en_fachada_azul.png" alt="Acabados y Pintura" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
               <div class="absolute inset-0 bg-gradient-to-t from-[#101827] via-[#101827]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
               <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 class="font-inter text-2xl text-white font-medium mb-3 tracking-tight">Acabados y Pintura</h3>
-                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Empastes nivelados, epóxicos y porcelanatos gran formato.</p>
+                <p class="font-inter text-slate-300 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-3">Empastes milimétricos, pintura epóxica, poliuretanos, acabados arquitectónicos y revestimientos porcelánicos.</p>
               </div>
             </article>
+
           </div>
         </div>
       </section>
@@ -275,7 +279,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
           <div #revealElement class="flex flex-col gap-8 md:gap-12 opacity-0 translate-y-12 transition-all duration-[1200ms] delay-100 ease-[cubic-bezier(0.25,1,0.5,1)]">
             <article routerLink="/proyectos" class="group grid grid-cols-1 lg:grid-cols-12 bg-white border border-slate-200 rounded-sm overflow-hidden hover:border-[#5C968D]/50 transition-colors duration-500 cursor-pointer shadow-sm hover:shadow-xl">
               <div class="lg:col-span-8 relative aspect-[16/10] md:aspect-auto md:h-[500px] overflow-hidden bg-slate-100">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop" alt="Edificio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793332153/Trabajadores_en_el_tejado_urbano.png" alt="Edificio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
                 <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-sm border border-slate-200/50 text-[#101827] text-[10px] font-bold px-4 py-1.5 uppercase tracking-[0.2em] rounded-sm font-jakarta">Proyecto Destacado</div>
               </div>
               <div class="lg:col-span-4 p-8 md:p-12 flex flex-col justify-center bg-[#F8FAFC] lg:border-l border-slate-200 group-hover:bg-white transition-colors duration-500">
@@ -292,7 +296,7 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               <article routerLink="/proyectos" class="group flex flex-col bg-white border border-slate-200 rounded-sm overflow-hidden hover:border-[#5C968D]/50 transition-colors duration-500 cursor-pointer shadow-sm hover:shadow-xl">
-                <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 shrink-0"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"></div>
+                <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 shrink-0"><img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793332711/Renovaci%C3%B3n_de_patio_moderno_en_construcci%C3%B3n.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"></div>
                 <div class="p-8 flex flex-col flex-grow bg-[#F8FAFC] group-hover:bg-white transition-colors duration-500">
                   <h4 class="font-inter font-medium text-xl text-[#101827] mb-3 tracking-tight group-hover:text-[#5C968D] transition-colors">Condominio Del Parque</h4>
                   <div class="mt-auto flex justify-between border-t border-slate-200 pt-5">
@@ -303,7 +307,11 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
               </article>
 
               <article routerLink="/proyectos" class="group flex flex-col bg-white border border-slate-200 rounded-sm overflow-hidden hover:border-[#5C968D]/50 transition-colors duration-500 cursor-pointer shadow-sm hover:shadow-xl">
-                <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 shrink-0"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"></div>
+                <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 shrink-0">
+                  <!-- Se agregó object-top para anclar la imagen desde arriba -->
+                  <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793333041/Instalaci%C3%B3n_HVAC_con_Tuber%C3%ADas_y_Man%C3%B3metros.png"
+                       class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000">
+                </div>
                 <div class="p-8 flex flex-col flex-grow bg-[#F8FAFC] group-hover:bg-white transition-colors duration-500">
                   <h4 class="font-inter font-medium text-xl text-[#101827] mb-3 tracking-tight group-hover:text-[#5C968D] transition-colors">Proyecto Boutique Chabrier</h4>
                   <div class="mt-auto flex justify-between border-t border-slate-200 pt-5">

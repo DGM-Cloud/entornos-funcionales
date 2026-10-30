@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
     <section class="relative w-full min-h-screen bg-[#0B192C] overflow-hidden pt-[104px] pb-24 md:pb-32">
       <!-- Fondo arquitectónico inmersivo con el azul corporativo -->
       <div class="absolute inset-0 z-0 flex justify-end opacity-100 mix-blend-luminosity">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop"
+        <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793336167/Sistema_de_v%C3%A1lvulas_contra_incendios_industriales.png"
              alt="Fondo Técnico"
              class="w-full md:w-3/4 h-full object-cover object-right" />
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-transparent"></div>
