@@ -88,19 +88,19 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
             <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 md:gap-x-0 md:divide-x divide-slate-200">
               <div class="flex flex-col items-center lg:items-start md:px-6 text-center lg:text-left hover:-translate-y-1 transition-transform duration-300">
                 <span class="font-jakarta text-5xl md:text-[56px] font-medium text-[#101827] mb-3 tracking-tighter">
-                  <span class="text-[#5C968D]">+</span>20
+                  <span class="text-[#5C968D]">+</span>12
                 </span>
                 <span class="text-[10px] md:text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">Años de Experiencia</span>
               </div>
               <div class="flex flex-col items-center lg:items-start md:px-6 text-center lg:text-left hover:-translate-y-1 transition-transform duration-300">
                 <span class="font-jakarta text-5xl md:text-[56px] font-medium text-[#101827] mb-3 tracking-tighter">
-                  <span class="text-[#5C968D]">+</span>400
+                  <span class="text-[#5C968D]">+</span>200
                 </span>
                 <span class="text-[10px] md:text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">Expedientes Ejecutados</span>
               </div>
               <div class="flex flex-col items-center lg:items-start md:px-6 text-center lg:text-left hover:-translate-y-1 transition-transform duration-300">
                 <span class="font-jakarta text-5xl md:text-[56px] font-medium text-[#101827] mb-3 tracking-tighter">
-                  <span class="text-[#5C968D]">+</span>3.2<span class="text-3xl lg:text-4xl text-slate-300">M</span>
+                  <span class="text-[#5C968D]">+</span>2.1<span class="text-3xl lg:text-4xl text-slate-300">M</span>
                 </span>
                 <span class="text-[10px] md:text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">m² Intervenidos</span>
               </div>

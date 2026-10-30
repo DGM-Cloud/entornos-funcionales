@@ -36,13 +36,19 @@ import { RouterLink } from '@angular/router';
             </nav>
           </div>
 
+          <!-- Especialidades con Enlace General -->
           <div class="md:col-span-4 lg:col-span-2">
             <h4 class="font-inter text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-6">Especialidades</h4>
             <nav class="flex flex-col gap-4">
-              <a routerLink="/servicios" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Drywall y Acústica</a>
-              <a routerLink="/servicios" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Acabados y Pintura</a>
-              <a routerLink="/servicios" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Redes Hidrosanitarias</a>
-              <a routerLink="/servicios" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Redes Eléctricas</a>
+              <a routerLink="/servicios" fragment="electricidad" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Electricidad Industrial</a>
+              <a routerLink="/servicios" fragment="hidrosanitarias" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Redes Hidrosanitarias</a>
+              <a routerLink="/servicios" fragment="acabados" class="font-inter text-[13px] text-[#B8C3D2] hover:text-[#F5F6F8] transition-colors">Acabados y Pintura</a>
+
+              <!-- NUEVO: Opción General de Servicios -->
+              <a routerLink="/servicios" class="font-inter text-[13px] text-[#5C968D] hover:text-[#F5F6F8] transition-colors font-medium mt-2 flex items-center gap-1 group">
+                Ver todos los servicios
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
             </nav>
           </div>
 
@@ -62,18 +68,13 @@ import { RouterLink } from '@angular/router';
             &copy; {{ currentYear }} Entornos Funcionales. Todos los derechos reservados.
           </p>
 
-          <!-- Enlaces Legales y Libro de Reclamaciones -->
           <div class="flex flex-wrap justify-center items-center gap-6">
-
-            <!-- Logo Oficial Libro de Reclamaciones -->
             <a routerLink="/libro-reclamaciones" class="flex flex-col items-center justify-center group">
               <img src="assets/libro-reclamaciones.png"
                    alt="Libro de Reclamaciones Oficial"
                    class="h-10 md:h-11 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm" />
             </a>
-
             <span class="text-slate-700 hidden md:inline">|</span>
-
             <a routerLink="/terminos" class="font-inter text-[9px] uppercase tracking-widest text-slate-500 hover:text-[#F5F6F8] transition-colors font-bold">Términos y Condiciones</a>
             <a routerLink="/privacidad" class="font-inter text-[9px] uppercase tracking-widest text-slate-500 hover:text-[#F5F6F8] transition-colors font-bold">Privacidad</a>
           </div>

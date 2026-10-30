@@ -1,15 +1,14 @@
 import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
-import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink], // IMPORTANTE: Declarado en los imports
+  imports: [RouterLink],
   template: `
     <section class="relative w-full h-[100dvh] flex flex-col justify-center overflow-hidden pt-[72px]">
 
       <div class="absolute inset-0 z-0">
-        <!-- CORRECCIÓN AQUÍ: object-[75%_center] para móvil, md:object-center para escritorio -->
         <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793334528/Reuni%C3%B3n_de_seguridad_en_construcci%C3%B3n.png"
              alt="Equipo técnico en obra" class="w-full h-full object-cover object-[75%_center] md:object-center opacity-70" />
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-[#0B192C]/60"></div>
@@ -37,9 +36,7 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
         </div>
       </div>
 
-      <!-- INDICADOR DE SCROLL ANIMADO -->
       <div class="absolute bottom-8 md:bottom-12 inset-x-0 z-20 flex flex-col items-center gap-2 animate-fade-in delay-500 opacity-0 pointer-events-none" style="animation-fill-mode: forwards;">
-        <!-- margin-right: -0.3em cancela el espacio asimétrico del tracking -->
         <span class="font-inter text-[8px] md:text-[9px] text-[#B8C3D2] uppercase tracking-[0.3em] font-medium" style="margin-right: -0.3em;">Descubrir</span>
         <div class="w-5 h-8 md:w-6 md:h-10 border border-[#B8C3D2]/50 rounded-full flex justify-center pt-2">
           <div class="w-1.5 h-1.5 bg-[#5C968D] rounded-full animate-scroll-down"></div>
@@ -52,32 +49,19 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
 
-          <!-- Columna Izquierda: Texto Formateado Editorial -->
           <div #revealElement class="lg:col-span-5 flex flex-col gap-8 opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <div>
               <h2 class="font-jakarta text-3xl md:text-4xl lg:text-[42px] font-medium text-[#0B192C] leading-[1.15] tracking-tight mb-8">
                 Líderes en soluciones integrales para la <span class="text-[#005691] italic font-medium">reconstrucción y acondicionamiento</span>.
               </h2>
-
               <div class="flex flex-col gap-6 text-slate-500 font-inter text-sm md:text-base leading-relaxed font-light">
-                <p>
-                  <span class="font-medium text-[#1E3E62]">Entornos Funcionales Reconstrucción & Acabados</span> es una empresa especializada en una amplia gama de servicios constructivos. Abarcamos desde trabajos de alta precisión en pintura y acabados arquitectónicos, hasta sistemas avanzados de electricidad y climatización (HVAC).
-                </p>
-
-                <!-- Bloque Destacado de Color -->
+                <p><span class="font-medium text-[#1E3E62]">Entornos Funcionales Reconstrucción & Acabados</span> es una empresa especializada en una amplia gama de servicios constructivos. Abarcamos desde trabajos de alta precisión en pintura y acabados arquitectónicos, hasta sistemas avanzados de electricidad y climatización (HVAC).</p>
                 <div class="bg-[#EBF3FA] border-l-4 border-[#005691] p-5 md:p-6 rounded-r-sm my-2">
-                  <p class="text-[#0B192C] font-medium text-[15px] md:text-lg leading-snug">
-                    "En cada proyecto, nos enfocamos en transformar y optimizar espacios para que sean funcionales, cómodos y estéticamente impecables."
-                  </p>
+                  <p class="text-[#0B192C] font-medium text-[15px] md:text-lg leading-snug">"En cada proyecto, nos enfocamos en transformar y optimizar espacios para que sean funcionales, cómodos y estéticamente impecables."</p>
                 </div>
-
-                <p>
-                  Ya sea en proyectos residenciales de lujo, desarrollos comerciales o plantas industriales, nuestro equipo de ingenieros está comprometido a superar las expectativas técnicas, ofreciendo soluciones a medida que perduran en el tiempo.
-                </p>
+                <p>Ya sea en proyectos residenciales de lujo, desarrollos comerciales o plantas industriales, nuestro equipo de ingenieros está comprometido a superar las expectativas técnicas, ofreciendo soluciones a medida que perduran en el tiempo.</p>
               </div>
             </div>
-
-            <!-- Stats Rápidas Estilizadas -->
             <div class="grid grid-cols-2 gap-4 mt-2">
               <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-sm border border-slate-100">
                 <div class="w-10 h-10 rounded-full bg-[#005691]/10 flex items-center justify-center shrink-0">
@@ -100,42 +84,28 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
             </div>
           </div>
 
-          <!-- Columna Derecha: Composición Fotográfica Dinámica -->
           <div #revealElement class="lg:col-span-7 relative w-full h-[500px] md:h-[600px] opacity-0 translate-y-12 transition-all duration-[1200ms] delay-200 ease-out mt-10 lg:mt-0">
-
-            <!-- Imagen Principal -->
             <div class="absolute top-0 right-0 w-[85%] h-[85%] bg-slate-100 overflow-hidden rounded-sm shadow-xl border border-slate-100">
-              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop"
-                   alt="Ejecución de obra" class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
+              <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793332153/Trabajadores_en_el_tejado_urbano.png"
+                   alt="Ejecución de obra - Entornos Funcionales" class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
             </div>
-
-            <!-- Imagen Secundaria Superpuesta -->
             <div class="absolute bottom-4 left-0 w-[45%] h-[50%] p-2 bg-white rounded-sm shadow-2xl z-10 border border-slate-100">
               <div class="w-full h-full overflow-hidden bg-slate-100 rounded-sm">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop"
-                     alt="Supervisión de Acabados" class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
+                <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793328787/IMG-20240918-WA0001.jpg"
+                     alt="Supervisión de Instalaciones Técnicas" class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
               </div>
             </div>
-
-            <!-- Tarjeta Flotante Glassmorphism -->
             <div class="absolute top-1/2 -left-4 md:-left-8 -translate-y-1/2 bg-[#005691]/95 backdrop-blur-md text-white p-5 md:p-6 rounded-sm shadow-2xl z-20 border border-[#005691]/50 max-w-[200px] hidden sm:block">
               <span class="font-mono text-4xl font-medium block mb-1">+12</span>
-              <span class="font-jakarta text-[11px] uppercase tracking-widest font-medium block leading-tight text-[#EBF3FA]">
-                Años de experiencia construyendo el futuro.
-              </span>
+              <span class="font-jakarta text-[11px] uppercase tracking-widest font-medium block leading-tight text-[#EBF3FA]">Años de experiencia construyendo el futuro.</span>
             </div>
-
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECCIÓN: PILARES (Bento Box Grid)
-         ========================================== -->
     <section class="py-20 md:py-32 bg-[#F8FAFC] border-t border-slate-200 relative overflow-hidden">
-      <!-- Retícula de fondo para darle textura -->
       <div class="absolute inset-0 z-0 pointer-events-none opacity-50"
            style="background-image: linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 32px 32px;"></div>
 
@@ -146,7 +116,6 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
           <p class="font-inter text-slate-500 font-light text-sm md:text-base">La base sobre la que edificamos la confianza de nuestros clientes corporativos y residenciales.</p>
         </div>
 
-        <!-- Diseño Bento Box Asimétrico y Colorido -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
 
           <!-- BOX 1: MISIÓN -->
@@ -155,36 +124,30 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
               <span class="font-mono text-xs font-medium text-[#005691] bg-[#EBF3FA] px-2.5 py-1 rounded-sm border border-[#005691]/10">01</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-300 group-hover:text-[#005691] transition-colors"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
-
             <h3 class="font-jakarta text-2xl md:text-3xl font-medium text-[#0B192C] mb-4 tracking-tight relative z-10">Nuestra Misión</h3>
-
             <p class="font-inter text-slate-500 text-sm md:text-base leading-relaxed font-light mt-auto relative z-10 max-w-lg">
               Ofrecer servicios de calidad superior en mantenimiento, reconstrucción y acabados para crear espacios funcionales, seguros y estéticamente armoniosos. Garantizamos la tranquilidad técnica de nuestros clientes a través de procedimientos rigurosos.
             </p>
-
             <div class="absolute bottom-0 right-0 w-32 h-32 bg-[#EBF3FA] rounded-tl-full opacity-50 transform translate-x-10 translate-y-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none"></div>
           </article>
 
           <!-- BOX 2: VISIÓN -->
           <article #revealElement class="md:col-span-5 group bg-[#0B192C] border border-[#1E3E62] rounded-sm p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0B192C]/20 transition-all duration-500 opacity-0 translate-y-8 delay-100 ease-out flex flex-col h-full relative overflow-hidden">
             <div class="absolute top-0 right-0 w-48 h-48 bg-[#0D9488] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"></div>
-
             <div class="flex items-center justify-between mb-8 relative z-10">
               <span class="font-mono text-xs font-medium text-[#B8C3D2] border border-[#1E3E62] px-2.5 py-1 rounded-sm bg-[#0B192C]">02</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-500 group-hover:text-[#0D9488] transition-colors"><path d="M2 12h10"/><path d="M9 4v16"/><path d="m3 9 3 3-3 3"/></svg>
             </div>
-
             <h3 class="font-jakarta text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight relative z-10">Nuestra Visión</h3>
-
             <p class="font-inter text-slate-400 text-sm md:text-base leading-relaxed font-light mt-auto relative z-10">
               Aspiramos a ser la empresa líder en servicios constructivos B2B del mercado, manteniendo un compromiso inquebrantable con la calidad constructiva y un enfoque total en la satisfacción del cliente.
             </p>
           </article>
 
-          <!-- BOX 3: ENFOQUE -->
-          <article #revealElement class="md:col-span-12 group relative w-full h-[280px] md:h-[320px] rounded-sm overflow-hidden border border-slate-200 opacity-0 translate-y-8 delay-200 ease-out">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
-                 alt="Enfoque de trabajo" class="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" />
+          <!-- BOX 3: ENFOQUE (Corregido con transition-all y duration-500) -->
+          <article #revealElement class="md:col-span-12 group relative w-full h-[280px] md:h-[320px] rounded-sm overflow-hidden border border-slate-200 transition-all duration-500 opacity-0 translate-y-8 delay-200 ease-out">
+            <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793332711/Renovaci%C3%B3n_de_patio_moderno_en_construcci%C3%B3n.png"
+                 alt="Enfoque de trabajo - Condominio" class="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" />
 
             <div class="absolute inset-0 bg-gradient-to-t from-[#0B192C]/95 via-[#0B192C]/40 to-transparent"></div>
 
@@ -204,9 +167,7 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
       </div>
     </section>
 
-    <!-- ==========================================
-         CALL TO ACTION INTERACTIVO
-         ========================================== -->
+    <!-- CALL TO ACTION INTERACTIVO -->
     <section class="bg-white py-20 md:py-24 relative overflow-hidden border-t border-slate-200">
       <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
         <h2 class="font-jakarta text-[32px] md:text-[48px] font-medium leading-[1.05] tracking-tighter text-[#0B192C] mb-6">
