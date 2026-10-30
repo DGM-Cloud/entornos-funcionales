@@ -9,10 +9,15 @@ import { RouterLink } from '@angular/router';
     <section class="relative w-full min-h-screen bg-[#0B192C] overflow-hidden pt-[104px] pb-24 md:pb-32">
       <!-- Fondo arquitectónico inmersivo con el azul corporativo -->
       <div class="absolute inset-0 z-0 flex justify-end opacity-100 mix-blend-luminosity">
+
+        <!-- CORRECCIÓN: object-center en móvil, md:object-right en escritorio -->
         <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793336167/Sistema_de_v%C3%A1lvulas_contra_incendios_industriales.png"
              alt="Fondo Técnico"
-             class="w-full md:w-3/4 h-full object-cover object-right" />
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-transparent"></div>
+             class="w-full md:w-3/4 h-full object-cover object-center md:object-right" />
+
+        <!-- CORRECCIÓN: Gradiente vertical (to-b) en móvil, horizontal (to-r) en escritorio -->
+        <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-[#0B192C]/30 md:to-transparent"></div>
+
         <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#0B192C] to-transparent"></div>
       </div>
 

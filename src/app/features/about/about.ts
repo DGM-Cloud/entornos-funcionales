@@ -9,8 +9,9 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
     <section class="relative w-full h-[100dvh] flex flex-col justify-center overflow-hidden pt-[72px]">
 
       <div class="absolute inset-0 z-0">
+        <!-- CORRECCIÓN AQUÍ: object-[75%_center] para móvil, md:object-center para escritorio -->
         <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793334528/Reuni%C3%B3n_de_seguridad_en_construcci%C3%B3n.png"
-             alt="Equipo técnico en obra" class="w-full h-full object-cover opacity-70 " />
+             alt="Equipo técnico en obra" class="w-full h-full object-cover object-[75%_center] md:object-center opacity-70" />
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/90 to-[#0B192C]/60"></div>
         <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0B192C] to-transparent"></div>
       </div>
@@ -36,7 +37,7 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
         </div>
       </div>
 
-      <!-- INDICADOR DE SCROLL ANIMADO (Corrección milimétrica de centrado visual aplicada) -->
+      <!-- INDICADOR DE SCROLL ANIMADO -->
       <div class="absolute bottom-8 md:bottom-12 inset-x-0 z-20 flex flex-col items-center gap-2 animate-fade-in delay-500 opacity-0 pointer-events-none" style="animation-fill-mode: forwards;">
         <!-- margin-right: -0.3em cancela el espacio asimétrico del tracking -->
         <span class="font-inter text-[8px] md:text-[9px] text-[#B8C3D2] uppercase tracking-[0.3em] font-medium" style="margin-right: -0.3em;">Descubrir</span>
@@ -204,7 +205,7 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
     </section>
 
     <!-- ==========================================
-         CALL TO ACTION INTERACTIVO (Corregido con routerLink)
+         CALL TO ACTION INTERACTIVO
          ========================================== -->
     <section class="bg-white py-20 md:py-24 relative overflow-hidden border-t border-slate-200">
       <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
@@ -215,11 +216,9 @@ import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
           Ponga su obra en manos de especialistas. Un ingeniero residente evaluará sus requerimientos y le entregará una propuesta técnica detallada.
         </p>
         <div class="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
-          <!-- CORRECCIÓN A routerLink="/contacto" -->
           <a routerLink="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
             Solicitar Estimación
           </a>
-          <!-- CORRECCIÓN A routerLink="/proyectos" -->
           <a routerLink="/proyectos" class="w-full sm:w-auto bg-transparent border border-slate-300 text-slate-600 px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-slate-50 hover:border-slate-400 transition-colors text-center">
             Ver Portafolio
           </a>
