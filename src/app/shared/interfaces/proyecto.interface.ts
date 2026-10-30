@@ -1,4 +1,4 @@
-export type CategoriaProyecto = 'todos' | 'corporativo' | 'comercial' | 'industrial' | 'residencial';
+export type CategoriaProyecto = 'todos' | 'cubiertas' | 'remodelacion' | 'construccion' | 'interiores' | 'climatizacion';
 
 export interface Proyecto {
   id: string;

@@ -21,10 +21,11 @@ export class Projects implements AfterViewInit {
 
   categorias: { id: CategoriaProyecto; label: string; num: string }[] = [
     { id: 'todos', label: 'Todos', num: '01' },
-    { id: 'corporativo', label: 'Corporativo', num: '02' },
-    { id: 'comercial', label: 'Comercial', num: '03' },
-    { id: 'industrial', label: 'Industrial', num: '04' },
-    { id: 'residencial', label: 'Residencial Lujo', num: '05' }
+    { id: 'cubiertas', label: 'Cubiertas', num: '02' },
+    { id: 'remodelacion', label: 'Remodelación', num: '03' },
+    { id: 'construccion', label: 'Construcción', num: '04' },
+    { id: 'interiores', label: 'Interiores', num: '05' },
+    { id: 'climatizacion', label: 'Climatización', num: '06' }
   ];
 
   categoriaActiva = signal<CategoriaProyecto>('todos');
