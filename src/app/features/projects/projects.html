@@ -1,1 +1,188 @@
-<p>projects works!</p>
+<!-- HERO A PANTALLA COMPLETA -->
+<section class="relative w-full min-h-screen flex flex-col justify-between overflow-hidden pt-[104px] pb-16">
+  <div class="absolute inset-0 z-0">
+    <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793335509/Sala_de_reuniones_moderna_con_techo_iluminado.png"
+         alt="Portafolio Arquitectónico" class="w-full h-full object-cover object-right" />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0B192C] via-[#0B192C]/85 to-[#0B192C]/20"></div>
+    <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0B192C] to-transparent"></div>
+  </div>
+
+  <div class="absolute inset-0 z-0 pointer-events-none mix-blend-overlay opacity-30"
+       style="background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 6rem 6rem;">
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 md:px-6 w-full animate-fade-in my-auto">
+    <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 border border-slate-600/50 bg-[#0B192C]/50 backdrop-blur-sm rounded-sm">
+      <div class="w-1.5 h-1.5 rounded-full bg-[#5C968D] animate-pulse"></div>
+      <span class="font-inter text-[#B8C3D2] text-[10px] font-bold tracking-[0.2em] uppercase">Expedientes de Obra</span>
+    </div>
+
+    <div class="max-w-3xl">
+      <h1 class="font-jakarta text-[56px] md:text-[84px] font-medium leading-[1.05] tracking-tighter mb-8 text-white">
+        <span class="block text-[#F5F6F8]">Portafolio</span>
+        <span class="block text-[#94A3B8] font-light mt-2">de Obras Ejecutadas.</span>
+      </h1>
+      <p class="text-slate-300 font-inter text-base md:text-xl leading-relaxed font-light max-w-2xl">
+        Un visualizador interactivo de nuestra solvencia en terreno. Seleccione la especialidad a la izquierda e inspeccione las fichas técnicas. Haga clic en un proyecto para explorar la galería y el comparador Antes/Después.
+      </p>
+    </div>
+  </div>
+
+  <div class="relative z-25 mx-auto flex flex-col items-center gap-3 animate-fade-in delay-500 opacity-0 mt-12 shrink-0" style="animation-fill-mode: forwards;">
+    <span class="font-inter text-[9px] text-[#B8C3D2] uppercase tracking-[0.3em] font-medium">Explorar Proyectos</span>
+    <div class="w-6 h-10 border border-[#B8C3D2]/50 rounded-full flex justify-center pt-2">
+      <div class="w-1.5 h-1.5 bg-[#5C968D] rounded-full animate-scroll-down"></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERFAZ ASIMÉTRICA: CATEGORÍAS & FICHAS -->
+<section class="bg-[#F8FAFC] border-t border-slate-200 relative min-h-[700px]">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+      <!-- PANEL IZQUIERDO -->
+      <div class="lg:col-span-3 lg:sticky lg:top-28 flex flex-col gap-8">
+        <div class="border-l border-slate-200/80 pl-6 flex flex-col gap-6">
+          <span class="font-jakarta text-[9px] font-medium text-slate-400 uppercase tracking-widest mb-2 block">Sectores Atendidos</span>
+
+          @for (cat of categorias; track cat.id) {
+            <button (click)="filtrar(cat.id)" class="group flex items-center justify-between py-2 text-left transition-all duration-300 focus:outline-none">
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-[11px] font-medium tracking-tight transition-colors" [class]="categoriaActiva() === cat.id ? 'text-[#005691]' : 'text-slate-400 group-hover:text-[#005691]'">
+                  {{ cat.num }}
+                </span>
+                <span class="font-jakarta text-sm uppercase tracking-wider transition-all duration-300 transform" [class]="categoriaActiva() === cat.id ? 'text-[#0B192C] translate-x-1.5 font-medium' : 'text-slate-500 font-light group-hover:text-[#0B192C] group-hover:translate-x-1'">
+                  {{ cat.label }}
+                </span>
+              </div>
+              <div class="h-[1px] bg-[#005691] transition-all duration-300 origin-left" [class]="categoriaActiva() === cat.id ? 'w-8 opacity-100' : 'w-0 opacity-0'"></div>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- PANEL DERECHO -->
+      <div class="lg:col-span-9 flex flex-col gap-8 min-h-[500px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          @for (proyecto of proyectosFiltrados(); track proyecto.id) {
+            <app-project-card
+              [proyecto]="proyecto"
+              (cardClick)="abrirVisorObra($event)">
+            </app-project-card>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODAL VISOR DE OBRA -->
+@if (proyectoActivo()) {
+  <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-fade-in">
+    <div class="absolute inset-0 bg-[#0B192C]/90 backdrop-blur-md" (click)="cerrarVisorObra()"></div>
+
+    <div class="relative z-10 w-full max-w-6xl h-full max-h-[90vh] bg-white rounded-sm shadow-2xl flex flex-col overflow-hidden">
+      <button (click)="cerrarVisorObra()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 bg-slate-100 hover:bg-slate-200 text-[#0B192C] p-2 rounded-sm transition-colors focus:outline-none shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+
+      <div class="overflow-y-auto flex-grow p-6 md:p-10 custom-scrollbar">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 border-b border-slate-100 pb-8 pr-12">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="font-mono text-[10px] text-[#005691] border border-slate-200 px-2.5 py-1 rounded-sm font-medium">{{ proyectoActivo()?.codigo }}</span>
+              <span class="font-jakarta text-[10px] uppercase tracking-widest font-medium text-slate-500">{{ proyectoActivo()?.categoria }}</span>
+            </div>
+            <h2 class="font-jakarta text-3xl md:text-4xl font-medium text-[#0B192C] leading-tight tracking-tight">{{ proyectoActivo()?.titulo }}</h2>
+          </div>
+          <div class="text-left md:text-right shrink-0">
+            <span class="block font-inter text-[9px] text-slate-400 uppercase tracking-widest font-medium mb-1">Cliente / Comitente</span>
+            <span class="block font-inter text-base text-[#0B192C] font-light">{{ proyectoActivo()?.cliente }}</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12">
+          <div class="lg:col-span-1 flex flex-col gap-8">
+            <div>
+              <h4 class="font-jakarta text-xs font-medium text-[#0B192C] uppercase tracking-widest mb-3">Memoria Descriptiva</h4>
+              <p class="font-inter text-sm text-slate-500 font-light leading-relaxed">{{ proyectoActivo()?.descripcion }}</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 bg-[#F8FAFC] border border-slate-100 p-5 rounded-sm">
+              <div>
+                <span class="block font-inter text-[9px] text-slate-400 uppercase tracking-widest font-medium mb-1">Ubicación</span>
+                <span class="block font-inter text-[13px] text-[#0B192C] font-light">{{ proyectoActivo()?.ubicacion }}</span>
+              </div>
+              <div>
+                <span class="block font-inter text-[9px] text-slate-400 uppercase tracking-widest font-medium mb-1">Plazo de Obra</span>
+                <span class="block font-mono text-[13px] text-[#005691] font-medium">{{ proyectoActivo()?.plazo }}</span>
+              </div>
+              <div class="col-span-2">
+                <span class="block font-inter text-[9px] text-slate-400 uppercase tracking-widest font-medium mb-1">Área Intervenida</span>
+                <span class="block font-mono text-[13px] text-[#1E3E62] font-medium">{{ proyectoActivo()?.metraje }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2">
+            <h4 class="font-jakarta text-[10px] font-medium text-slate-400 uppercase tracking-widest mb-4">Registro Fotográfico Adicional</h4>
+            @if (proyectoActivo()?.galeria?.length) {
+              <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 custom-scrollbar">
+                @for (img of proyectoActivo()?.galeria; track img) {
+                  <div class="w-[85%] md:w-[65%] shrink-0 aspect-[16/10] bg-slate-100 rounded-sm snap-center border border-slate-200 overflow-hidden">
+                    <img [src]="img" class="w-full h-full object-cover" alt="Vista del Proyecto" loading="lazy" />
+                  </div>
+                }
+              </div>
+            } @else {
+              <div class="w-full aspect-[21/9] bg-slate-100 rounded-sm overflow-hidden border border-slate-200">
+                <img [src]="proyectoActivo()?.imagen" class="w-full h-full object-cover" alt="Proyecto principal" loading="lazy" />
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="mb-10">
+          <h4 class="font-jakarta text-[10px] font-medium text-slate-400 uppercase tracking-widest mb-4">Inspección Antes y Después</h4>
+          <div class="w-full aspect-[16/9] md:aspect-[21/9] bg-slate-100 border border-slate-200 rounded-sm overflow-hidden relative">
+            <app-before-after-slider></app-before-after-slider>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-slate-100">
+          <span class="block font-inter text-[9px] text-slate-400 uppercase tracking-widest font-medium mb-4">Partidas y Especialidades Intervenidas</span>
+          <div class="flex flex-wrap gap-2">
+            @for (partida of proyectoActivo()?.partidas; track partida) {
+              <span class="border border-slate-200 bg-[#F8FAFC] text-[#0B192C] font-mono text-[9px] px-3 py-1.5 rounded-sm uppercase tracking-wider">
+                {{ partida }}
+              </span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- CALL TO ACTION INTERACTIVO -->
+<section class="bg-[#0B192C] py-24 relative overflow-hidden border-t border-slate-800">
+  <div class="absolute inset-0 z-0 pointer-events-none mix-blend-overlay opacity-20"
+       style="background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 6rem 6rem;"></div>
+  <div class="max-w-5xl mx-auto px-5 md:px-6 relative z-10 text-center flex flex-col items-center">
+    <h2 class="font-jakarta text-[38px] md:text-[56px] font-medium leading-[1.05] tracking-tighter text-white mb-6">
+      ¿Tiene una partida por resolver en su obra?
+    </h2>
+    <p class="text-base md:text-lg text-[#94A3B8] font-inter mb-10 leading-relaxed font-light max-w-2xl">
+      Escríbanos o envíenos los planos del proyecto. Un ingeniero residente se pondrá en contacto para afinar metrados y proponer soluciones.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
+      <a routerLink="/contacto" class="w-full sm:w-auto bg-[#005691] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62] transition-colors text-center">
+        Validar Proyecto
+      </a>
+      <a href="https://wa.me/51913460898" target="_blank" class="w-full sm:w-auto bg-transparent border border-[#1E3E62] text-white px-8 py-4 rounded-sm text-[13px] font-jakarta font-medium uppercase tracking-[0.1em] hover:bg-[#1E3E62]/20 transition-colors text-center">
+        Consulta Técnica Inmediata
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,1 +1,49 @@
-<p>project-card works!</p>
+<article (click)="onClick()" class="animate-card-enter group cursor-pointer flex flex-col bg-white border border-slate-200 rounded-sm hover:border-[#005691]/40 hover:shadow-xl transition-all duration-500 overflow-hidden h-[420px]">
+
+  <!-- Cabecera -->
+  <div class="px-5 py-4 flex items-center justify-between border-b border-slate-100 bg-white relative z-20">
+    <span class="font-mono text-[9px] font-medium text-slate-500 border border-slate-200 px-2.5 py-1 rounded-sm">
+      {{ proyecto.codigo }}
+    </span>
+    <div class="flex items-center gap-2">
+      <span class="font-jakarta text-[10px] font-medium uppercase tracking-widest text-[#0B192C]">
+        {{ proyecto.categoria }}
+      </span>
+      <div class="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover:bg-[#005691] transition-colors"></div>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE IMAGEN -->
+  <div class="relative flex-grow overflow-hidden bg-slate-100 border-b border-slate-100">
+    <img [src]="proyecto.imagen" [alt]="proyecto.titulo"
+         class="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" loading="lazy" />
+
+    <div class="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm border-t border-white/50 p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="flex flex-col gap-1 border-r border-slate-200/50">
+          <span class="font-inter text-[8px] text-slate-400 uppercase tracking-widest font-medium">Cliente</span>
+          <span class="font-inter text-[11px] text-[#0B192C] font-medium truncate pr-2">{{ proyecto.cliente }}</span>
+        </div>
+        <div class="flex flex-col gap-1 pl-2 border-r border-slate-200/50">
+          <span class="font-inter text-[8px] text-slate-400 uppercase tracking-widest font-medium">Área</span>
+          <span class="font-mono text-[11px] text-[#1E3E62] font-medium">{{ proyecto.metraje }}</span>
+        </div>
+        <div class="flex flex-col gap-1 pl-2">
+          <span class="font-inter text-[8px] text-slate-400 uppercase tracking-widest font-medium">Plazo</span>
+          <span class="font-mono text-[11px] text-[#005691] font-medium">{{ proyecto.plazo }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER DE LA TARJETA -->
+  <div class="px-6 py-5 bg-white relative z-20 shrink-0">
+    <h3 class="font-jakarta text-[17px] md:text-[19px] font-medium text-[#0B192C] mb-1.5 leading-tight group-hover:text-[#005691] transition-colors truncate">
+      {{ proyecto.titulo }}
+    </h3>
+    <div class="flex items-center justify-between">
+      <span class="font-inter text-[11px] text-slate-500 font-light truncate">{{ proyecto.ubicacion }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-300 group-hover:text-[#005691] group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </div>
+  </div>
+</article>
