@@ -2,7 +2,7 @@ import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, signal, 
 import { RouterLink } from '@angular/router'; // IMPORTANTE: Agregado el import
 import { BeforeAfterSlider } from '../../shared/components/before-after-slider/before-after-slider';
 
-type CategoriaProyecto = 'todos' | 'corporativo' | 'comercial' | 'industrial' | 'residencial';
+type CategoriaProyecto = 'todos' | 'cubiertas' | 'remodelacion' | 'construccion' | 'interiores' | 'climatizacion';
 
 interface Proyecto {
   id: string;
@@ -18,6 +18,13 @@ interface Proyecto {
   galeria?: string[];
   partidas: string[];
 }
+
+const imagenesProyecto = (numero: number, cantidad: number) => {
+  const carpeta = `project-${String(numero).padStart(2, '0')}`;
+  return Array.from({ length: cantidad }, (_, indice) =>
+    `assets/projects/${carpeta}/${String(indice + 1).padStart(2, '0')}.jpg`
+  );
+};
 
 @Component({
   selector: 'app-projects',
@@ -337,97 +344,183 @@ export class Projects implements AfterViewInit {
 
   categorias: { id: CategoriaProyecto; label: string; num: string }[] = [
     { id: 'todos', label: 'Todos', num: '01' },
-    { id: 'corporativo', label: 'Corporativo', num: '02' },
-    { id: 'comercial', label: 'Comercial', num: '03' },
-    { id: 'industrial', label: 'Industrial', num: '04' },
-    { id: 'residencial', label: 'Residencial Lujo', num: '05' }
+    { id: 'cubiertas', label: 'Cubiertas', num: '02' },
+    { id: 'remodelacion', label: 'Remodelación', num: '03' },
+    { id: 'construccion', label: 'Construcción', num: '04' },
+    { id: 'interiores', label: 'Interiores', num: '05' },
+    { id: 'climatizacion', label: 'Climatización', num: '06' }
   ];
 
   categoriaActiva = signal<CategoriaProyecto>('todos');
 
   proyectos: Proyecto[] = [
     {
-      id: 'the-sight',
+      id: 'proyecto-01',
       codigo: 'EF-01',
-      categoria: 'corporativo',
-      titulo: 'Edificio Residencial The Sight',
-      cliente: 'Inmobiliaria Edifica',
-      ubicacion: 'Barranco, Lima',
-      metraje: '4,500 m²',
-      plazo: '15 Meses',
-      descripcion: 'Construcción integral de casco estructural, levantamiento de muros pantalla y vaciado de losas postensadas para torre de 15 niveles. Ejecución bajo estrictos estándares de seguridad.',
-      imagen: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop',
-      galeria: [
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop'
-      ],
-      partidas: ['Casco Estructural', 'Muros Pantalla', 'Losas Postensadas']
+      categoria: 'cubiertas',
+      titulo: 'Proyecto 01 · Cubiertas',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de trabajos en cubierta. Los datos técnicos y comerciales del proyecto están pendientes de validación por Entornos Funcionales.',
+      imagen: imagenesProyecto(1, 12)[0],
+      galeria: imagenesProyecto(1, 12),
+      partidas: ['Cubiertas', 'Impermeabilización']
     },
     {
-      id: 'condominio-parque',
+      id: 'proyecto-02',
       codigo: 'EF-02',
-      categoria: 'residencial',
-      titulo: 'Condominio Del Parque',
-      cliente: 'Cissac S.A.',
-      ubicacion: 'Chiclayo',
-      metraje: '12,500 m²',
-      plazo: '11 Meses',
-      descripcion: 'Ejecución masiva de empastados, pintura premium de exteriores e instalación de revestimientos porcelánicos de gran formato.',
-      imagen: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop',
-      partidas: ['Pintura Premium', 'Acabados Lujo', 'Porcelanatos']
+      categoria: 'remodelacion',
+      titulo: 'Proyecto 02 · Remodelación interior',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de intervención y acabados interiores. El alcance definitivo está pendiente de confirmación por Entornos Funcionales.',
+      imagen: imagenesProyecto(2, 9)[0],
+      galeria: imagenesProyecto(2, 9),
+      partidas: ['Remodelación', 'Acabados interiores']
     },
     {
-      id: 'boutique-chabrier',
+      id: 'proyecto-03',
       codigo: 'EF-03',
-      categoria: 'comercial',
-      titulo: 'Proyecto Boutique Chabrier',
-      cliente: 'Lateral Inmobiliaria',
-      ubicacion: 'San Isidro, Lima',
-      metraje: '2,100 m²',
-      plazo: '7 Meses',
-      descripcion: 'Remodelación y modernización integral de fachada e interiores para oficinas boutique. Actualización de redes de climatización.',
-      imagen: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop',
-      partidas: ['Drywall Acústico', 'Fachada Comercial', 'Redes Técnicas']
+      categoria: 'construccion',
+      titulo: 'Proyecto 03 · Implementación técnica',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de estructura, tabiquería e instalaciones técnicas. La memoria descriptiva será completada con información validada del cliente.',
+      imagen: imagenesProyecto(3, 8)[0],
+      galeria: imagenesProyecto(3, 8),
+      partidas: ['Construcción', 'Instalaciones técnicas']
     },
     {
-      id: 'almacen-industrial',
+      id: 'proyecto-04',
       codigo: 'EF-04',
-      categoria: 'industrial',
-      titulo: 'Centro de Almacenes Lurín',
-      cliente: 'Grupo Inmobiliario L&S',
-      ubicacion: 'Lurín, Lima',
-      metraje: '22,000 m²',
-      plazo: '18 Meses',
-      descripcion: 'Construcción de naves industriales, losas de concreto de alta resistencia, redes hidrosanitarias industriales y sistemas de drenaje.',
-      imagen: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=800&auto=format&fit=crop',
-      partidas: ['Losa Alto Tránsito', 'Redes Pesadas', 'Drenaje']
+      categoria: 'construccion',
+      titulo: 'Proyecto 04 · Estructura metálica',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico del proceso de ejecución de una estructura metálica. Los datos de obra se mantienen pendientes de confirmación.',
+      imagen: imagenesProyecto(4, 15)[0],
+      galeria: imagenesProyecto(4, 15),
+      partidas: ['Estructura metálica', 'Construcción liviana']
     },
     {
-      id: 'oficinas-bancarias',
+      id: 'proyecto-05',
       codigo: 'EF-05',
-      categoria: 'corporativo',
-      titulo: 'Sede Central Financiera',
-      cliente: 'Banco de la Nación',
-      ubicacion: 'San Borja, Lima',
-      metraje: '3,200 m²',
-      plazo: '6 Meses',
-      descripcion: 'Acondicionamiento y tabiquería con tratamiento acústico de alta densidad. Implementación de redes LED de seguridad.',
-      imagen: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop',
-      partidas: ['Drywall RF/RH', 'Acústica Especial', 'Redes LED']
+      categoria: 'interiores',
+      titulo: 'Proyecto 05 · Iluminación interior',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de acondicionamiento e iluminación interior. El detalle técnico será actualizado cuando Entornos Funcionales lo valide.',
+      imagen: imagenesProyecto(5, 6)[0],
+      galeria: imagenesProyecto(5, 6),
+      partidas: ['Interiores', 'Iluminación']
     },
     {
-      id: 'planta-envasado',
+      id: 'proyecto-06',
       codigo: 'EF-06',
-      categoria: 'industrial',
-      titulo: 'Planta de Envasado Norte',
-      cliente: 'Alicorp S.A.A.',
-      ubicacion: 'Chimbote',
-      metraje: '8,500 m²',
-      plazo: '12 Meses',
-      descripcion: 'Instalación de recubrimientos epóxicos y poliuretano en pisos y muros para alta asepsia. Montaje de redes de fluidos.',
-      imagen: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop',
-      partidas: ['Epóxicos Industriales', 'Asepsia', 'Montajes Especiales']
+      categoria: 'interiores',
+      titulo: 'Proyecto 06 · Adecuación de oficina',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de una adecuación interior. La información de alcance, cliente, ubicación y plazos está pendiente de confirmación.',
+      imagen: imagenesProyecto(6, 2)[0],
+      galeria: imagenesProyecto(6, 2),
+      partidas: ['Acondicionamiento', 'Interiores']
+    },
+    {
+      id: 'proyecto-07',
+      codigo: 'EF-07',
+      categoria: 'climatizacion',
+      titulo: 'Proyecto 07 · Climatización',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de instalaciones y equipos de climatización. Los datos técnicos específicos deben ser confirmados por Entornos Funcionales.',
+      imagen: imagenesProyecto(7, 14)[0],
+      galeria: imagenesProyecto(7, 14),
+      partidas: ['Climatización', 'Instalaciones técnicas']
+    },
+    {
+      id: 'proyecto-08',
+      codigo: 'EF-08',
+      categoria: 'cubiertas',
+      titulo: 'Proyecto 08 · Impermeabilización',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de trabajos de impermeabilización en cubierta. La ficha técnica está pendiente de validación.',
+      imagen: imagenesProyecto(8, 4)[0],
+      galeria: imagenesProyecto(8, 4),
+      partidas: ['Cubiertas', 'Impermeabilización']
+    },
+    {
+      id: 'proyecto-09',
+      codigo: 'EF-09',
+      categoria: 'interiores',
+      titulo: 'Proyecto 09 · Mobiliario integrado',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de fabricación e instalación de mobiliario integrado. La información comercial se mantiene por confirmar.',
+      imagen: imagenesProyecto(9, 6)[0],
+      galeria: imagenesProyecto(9, 6),
+      partidas: ['Mobiliario', 'Acabados interiores']
+    },
+    {
+      id: 'proyecto-10',
+      codigo: 'EF-10',
+      categoria: 'interiores',
+      titulo: 'Proyecto 10 · Mobiliario de cocina',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de implementación de mobiliario de cocina. Los datos de ubicación, metraje y plazo requieren confirmación.',
+      imagen: imagenesProyecto(10, 4)[0],
+      galeria: imagenesProyecto(10, 4),
+      partidas: ['Mobiliario', 'Interiores']
+    },
+    {
+      id: 'proyecto-11',
+      codigo: 'EF-11',
+      categoria: 'construccion',
+      titulo: 'Proyecto 11 · Cubierta metálica',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de ejecución y acabado de una estructura de cubierta. La memoria final será completada con datos validados.',
+      imagen: imagenesProyecto(11, 3)[0],
+      galeria: imagenesProyecto(11, 3),
+      partidas: ['Estructura metálica', 'Cubiertas']
+    },
+    {
+      id: 'proyecto-12',
+      codigo: 'EF-12',
+      categoria: 'climatizacion',
+      titulo: 'Proyecto 12 · Mantenimiento HVAC',
+      cliente: 'Por confirmar',
+      ubicacion: 'Por confirmar',
+      metraje: 'Por confirmar',
+      plazo: 'Por confirmar',
+      descripcion: 'Registro fotográfico de mantenimiento de equipos de climatización. Las especificaciones del servicio están pendientes de confirmación.',
+      imagen: imagenesProyecto(12, 2)[0],
+      galeria: imagenesProyecto(12, 2),
+      partidas: ['Climatización', 'Mantenimiento']
     }
   ];
 
