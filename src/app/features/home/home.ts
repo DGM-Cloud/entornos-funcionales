@@ -8,7 +8,8 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
   imports: [RouterLink, BeforeAfterSlider],
   template: `
     <!-- ==========================================
-         1. HERO SECTION
+1. HERO SECTION
+
          ========================================== -->
     <section class="relative w-full h-screen flex flex-col justify-center bg-[#101827] overflow-hidden pt-[72px]">
       <!-- FOTOGRAFÍA PRINCIPAL -->
@@ -207,9 +208,11 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
             </div>
             <div class="max-w-sm md:max-w-md border-l border-slate-200 pl-6 md:pl-8 mb-2">
               <p class="text-slate-500 font-inter text-base leading-relaxed font-light mb-6">Dominio integral de las partidas arquitectónicas críticas para garantizar la entrega de obras sin observaciones.</p>
-              <a routerLink="/servicios" class="inline-flex items-center gap-2 font-jakarta font-bold text-[11px] text-[#101827] hover:text-[#5C968D] uppercase tracking-[0.15em] transition-colors group">
+
+              <!-- CORRECCIÓN: py-1 y overflow-visible -->
+              <a routerLink="/servicios" class="inline-flex items-center gap-2 py-1 font-jakarta font-bold text-[11px] text-[#101827] hover:text-[#5C968D] uppercase tracking-[0.15em] transition-colors group">
                 Ver catálogo completo
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform overflow-visible"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
             </div>
           </div>
@@ -269,9 +272,11 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
             </div>
             <div class="max-w-sm md:max-w-md border-l border-slate-200 pl-6 md:pl-8 mb-2">
               <p class="text-slate-500 font-inter text-base leading-relaxed font-light mb-6">Una muestra de nuestra capacidad operativa en proyectos de alta exigencia, cumpliendo plazos y normativas.</p>
-              <a routerLink="/proyectos" class="inline-flex items-center gap-2 font-jakarta font-bold text-[11px] text-[#101827] hover:text-[#5C968D] uppercase tracking-[0.15em] transition-colors group">
+
+              <!-- CORRECCIÓN: py-1 y overflow-visible -->
+              <a routerLink="/proyectos" class="inline-flex items-center gap-2 py-1 font-jakarta font-bold text-[11px] text-[#101827] hover:text-[#5C968D] uppercase tracking-[0.15em] transition-colors group">
                 Ver portafolio completo
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform overflow-visible"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
             </div>
           </div>
@@ -308,7 +313,6 @@ import { BeforeAfterSlider } from '../../shared/components/before-after-slider/b
 
               <article routerLink="/proyectos" class="group flex flex-col bg-white border border-slate-200 rounded-sm overflow-hidden hover:border-[#5C968D]/50 transition-colors duration-500 cursor-pointer shadow-sm hover:shadow-xl">
                 <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 shrink-0">
-                  <!-- Se agregó object-top para anclar la imagen desde arriba -->
                   <img src="https://res.cloudinary.com/w775d4fq/image/upload/f_auto,q_auto/v1793333041/Instalaci%C3%B3n_HVAC_con_Tuber%C3%ADas_y_Man%C3%B3metros.png"
                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000">
                 </div>
